@@ -27,7 +27,8 @@ function App() {
               <Link to='/protected'>Protected Page</Link>
             </li>
           </ul>
-          <Route path="/login" cmoponent={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
           <PrivateRoute exact path='/protected' component={Dashboard} />
         </main>
       </div>
