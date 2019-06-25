@@ -11,7 +11,7 @@ import {
 const initialState = {
   error: '',
   fetchingData: false,
-  loggingData: false,
+  loggingIn: false,
   someData: []
 }
 
