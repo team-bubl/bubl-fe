@@ -8,10 +8,10 @@ class Signup extends React.Component {
 
   state = {
     newUser: {
-      school: '',
       username: '',
       password: ''
-    }
+    },
+    school_id: ''
   };
 
   handleChange = e => {
@@ -25,7 +25,7 @@ class Signup extends React.Component {
 
   signup = e => {
     e.preventDefault();
-    this.props.signup(this.state.newUser)
+    this.props.signup(this.state)
       .then(res => {
         if (res) {
           this.props.history.push('/protected');
@@ -40,6 +40,11 @@ class Signup extends React.Component {
     return (
       <div className="delete-this-div">
         <form onSubmit={this.signup}>
+          <select value={this.state.school_id} onChange={this.handleChange}>
+            <option value="ADC">Alice D Contreras HS</option>
+            <option value="MLK">Martin Luther King HS</option>
+            <option value="HHS">Haltom High School</option>
+          </select>
           <input
             type="text"
             name="username"

@@ -5,7 +5,7 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     // TODO edit API base URL
-    baseURL: 'http://localhost:5000/api/',
+    baseURL: 'https://team-bubl-api.herokuapp.com/api',
     headers: {
       Authorization: token
     }

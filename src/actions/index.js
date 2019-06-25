@@ -9,7 +9,7 @@ export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axiosWithAuth()
     //  TODO edit endpoints
-    .post("/login", creds)
+    .post("/auth/login", creds)
     .then(res => {
       localStorage.setItem('token', res.data.payload);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.user })
@@ -28,7 +28,7 @@ export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
     //  TODO edit endpoints
-    .post("/signup", user)
+    .post("/auth/register", user)
     .then(res => {
       localStorage.setItem('token', res.data.payload);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user })
