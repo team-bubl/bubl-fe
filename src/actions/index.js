@@ -20,6 +20,29 @@ export const login = creds => dispatch => {
     .catch(err => console.log(err.response));
 }
 
+// TODO scrutinize this SIGNUP acton sequence
+export const SIGNUP_START = "SIGNUP_START";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
+export const signup = creds => dispatch => {
+  dispatch({ type: SIGNUP_START });
+  return axiosWithAuth()
+    //  TODO edit endpoints
+    .post("/signup", creds)
+    .then(res => {
+      localStorage.setItem('token', res.data.payload);
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user })
+      // In Signup.js this function that calls this action creator
+      // needs the following to return true so that it can history.push to a protected route
+      return true;
+    })
+    .catch(err => console.log(err.response));
+}
+
+// TODO Add User action sequence
+
+
+
 export const FETCH_DATA_START = 'FETCH_DATA_START';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
@@ -28,7 +51,9 @@ export const getData = () => dispatch => {
   axiosWithAuth()
     //  TODO edit endpoints
     .get('/data')
-    .then(res => console.log(res))
+    .then(res => {
+      dispatch({ tpye: FETCH_DATA_SUCCESS, payload: res.data.data });
+    })
     .catch(err => {
       dispatch({ type: FETCH_DATA_FAILURE, payload: err.response.data.error });
     });
