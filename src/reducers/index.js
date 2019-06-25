@@ -1,7 +1,7 @@
 import {
   LOGIN_START,
   LOGIN_SUCCESS,
-  // TODO write out failure
+  // TODO write out failures
   // LOGIN_FAILURE,
   FETCH_DATA_START,
   FETCH_DATA_SUCCESS,

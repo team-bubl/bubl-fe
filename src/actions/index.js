@@ -39,20 +39,6 @@ export const signup = user => dispatch => {
     .catch(err => console.log(err.response));
 }
 
-// // TODO Add_User action sequence
-// export const ADD_USER_START = "ADD_USER_START";
-// export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
-// export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
-// export const addUser = user => dispatch => {
-//   dispatch({ type: ADD_USER_START });
-//   return axiosWithAuth()
-//     .post("/addUser", user)
-//     .then(res => {
-//       localStorage.setItem('')
-//     })
-// }
-
-
 export const FETCH_DATA_START = 'FETCH_DATA_START';
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
