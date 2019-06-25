@@ -24,11 +24,11 @@ export const login = creds => dispatch => {
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
-export const signup = creds => dispatch => {
+export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
   return axiosWithAuth()
     //  TODO edit endpoints
-    .post("/signup", creds)
+    .post("/signup", user)
     .then(res => {
       localStorage.setItem('token', res.data.payload);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user })
@@ -39,8 +39,18 @@ export const signup = creds => dispatch => {
     .catch(err => console.log(err.response));
 }
 
-// TODO Add User action sequence
-
+// // TODO Add_User action sequence
+// export const ADD_USER_START = "ADD_USER_START";
+// export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+// export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
+// export const addUser = user => dispatch => {
+//   dispatch({ type: ADD_USER_START });
+//   return axiosWithAuth()
+//     .post("/addUser", user)
+//     .then(res => {
+//       localStorage.setItem('')
+//     })
+// }
 
 
 export const FETCH_DATA_START = 'FETCH_DATA_START';

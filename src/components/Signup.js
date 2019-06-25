@@ -7,7 +7,7 @@ import { signup } from '../actions';
 class Signup extends React.Component {
 
   state = {
-    newCredentials: {
+    newUser: {
       school: '',
       username: '',
       password: ''
@@ -16,8 +16,8 @@ class Signup extends React.Component {
 
   handleChange = e => {
     this.setState({
-      newCredentials: {
-        ...this.state.newCredentials,
+      newUser: {
+        ...this.state.newUser,
         [e.target.name]: e.target.value
       }
     });
@@ -25,7 +25,7 @@ class Signup extends React.Component {
 
   signup = e => {
     e.preventDefault();
-    this.props.signup(this.state.newCredentials)
+    this.props.signup(this.state.newUser)
       .then(res => {
         if (res) {
           this.props.history.push('/protected');
@@ -39,21 +39,21 @@ class Signup extends React.Component {
     // TODO add school selector list
     return (
       <div className="delete-this-div">
-        <form onSubmit={this.login}>
+        <form onSubmit={this.signup}>
           <input
             type="text"
             name="username"
-            value={this.state.newCredentials.username}
+            value={this.state.newUser.username}
             onChange={this.handleChange}
           />
           <input
             type="password"
             name="password"
-            value={this.state.newCredentials.password}
+            value={this.state.newUser.password}
             onChange={this.handleChange}
           />
           <button>
-            {this.props.loggingIn ? (
+            {this.props.signingUp ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (
                 'Sign Up'
