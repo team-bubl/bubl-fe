@@ -1,7 +1,11 @@
 import {
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  // TODO write out failure
+  // LOGIN_FAILURE,
+  FETCH_DATA_START,
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -24,6 +28,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         error: ''
+      }
+    case FETCH_DATA_START:
+      return {
+        ...state,
+        error: '',
+        fetchingData: true
       }
     default:
       return state;
