@@ -19,6 +19,12 @@ const reducer = (state = initialState, action) => {
         error: '',
         loggingIn: true
       }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false,
+        error: ''
+      }
     default:
       return state;
   }
