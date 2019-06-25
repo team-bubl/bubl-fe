@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 
-import { getGata } from '../actions';
+import { getData } from '../actions';
 
 class Dashboard extends React.Component {
 
@@ -16,16 +16,33 @@ class Dashboard extends React.Component {
     return (
       <div className="delete-this-div">
         <p>Dashboard</p>
+        {/* Uncomment below to fetch data */}
+        {/* {this.props.fetchingData && (
+          <div className="key spinner">
+            <Loader type="Puff" color="#204963" height="60" width="60" />
+            <p>Loading Data</p>
+          </div>
+        )}
+        {this.props.error && <h4>{this.props.error}</h4>}
+        {!this.fetchingData && someData.length > 0 && (
+          <div className="data-display-wrapper">
+            <p>Fetched Data</p>
+          </div>
+        )} */}
       </div>
     )
   }
 }
 
-const mapStateToProps = () => { };
+const mapStateToProps = ({ error, someData, fetchingData }) => ({
+  error,
+  someData,
+  fetchingData
+});
 
 export default withRouter(
   connect(
     mapStateToProps,
-    {}
+    { getData }
   )(Dashboard)
 );

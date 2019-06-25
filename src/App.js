@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Dashboard from './components/Dahboard';
+import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 
 import './App.css';

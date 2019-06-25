@@ -22,19 +22,32 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: '',
         loggingIn: true
-      }
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
         loggingIn: false,
         error: ''
-      }
+      };
     case FETCH_DATA_START:
       return {
         ...state,
         error: '',
         fetchingData: true
-      }
+      };
+    case FETCH_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingData: false,
+        someData: action.payload
+        // .filter(add any filters here)
+      };
+    case FETCH_DATA_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        fetchingData: false
+      };
     default:
       return state;
   }
