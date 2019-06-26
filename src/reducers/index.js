@@ -12,9 +12,9 @@ import {
   FETCH_USERS_START,
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
-  FETCH_BUBL_START,
-  FETCH_BUBL_SUCCESS,
-  FETCH_BUBL_FAILURE,
+  FETCH_BUBLS_START,
+  FETCH_BUBLS_SUCCESS,
+  FETCH_BUBLS_FAILURE,
   FETCH_POSTS_START,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
@@ -42,10 +42,12 @@ const reducer = (state = initialState, action) => {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
+      console.log("LOGIN_SUCCESS action.payload:", action.payload)
       return {
         ...state,
         loggingIn: false,
-        error: ''
+        error: '',
+        username: ''
       };
     case FETCH_SCHOOLS_START:
       return {
@@ -103,23 +105,23 @@ const reducer = (state = initialState, action) => {
         fetchingUser: false,
         error: action.payload
       }
-    case FETCH_BUBL_START:
+    case FETCH_BUBLS_START:
       return {
         ...state,
-        fetchingBubl: true,
+        fetchingBubls: true,
         error: ''
       }
-    case FETCH_BUBL_SUCCESS:
+    case FETCH_BUBLS_SUCCESS:
       return {
         ...state,
-        fetchingBubl: false,
+        fetchingBubls: false,
         bublData: action.payload,
         error: ''
       }
-    case FETCH_BUBL_FAILURE:
+    case FETCH_BUBLS_FAILURE:
       return {
         ...state,
-        fetchingBubl: false,
+        fetchingBubls: false,
         error: action.payload
       }
     case FETCH_POSTS_START:

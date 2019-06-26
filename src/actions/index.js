@@ -11,7 +11,8 @@ export const login = creds => dispatch => {
     .post("/auth/login", creds)
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user })
+      localStorage.setItem('user', creds.username);
+      dispatch({ type: LOGIN_SUCCESS, payload: creds.username })
       // In Login.js this function that calls this action creator
       // needs the following to return true so that it can history.push to a protected route
       return true;
@@ -27,7 +28,7 @@ export const getSchools = () => dispatch => {
   dispatch({ type: FETCH_SCHOOLS_START });
   axiosWithAuth()
     //  TODO edit endpoints
-    .get('/school')
+    .get('/schools')
     .then(res => {
       // * res.data Brings back an array of objects with `audit_id` and `school` as properties
       dispatch({ type: FETCH_SCHOOLS_SUCCESS, payload: res.data });
@@ -37,10 +38,6 @@ export const getSchools = () => dispatch => {
     });
 };
 
-
-
-
-// TODO scrutinize this SIGNUP acton sequence
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILURE = "SIGNUP_FAILURE";
@@ -62,7 +59,7 @@ export const signup = user => dispatch => {
 export const FETCH_USERS_START = 'FETCH_USERS_START';
 export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
 export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
-export const getUser = () => dispatch => {
+export const getUsers = () => dispatch => {
   dispatch({ type: FETCH_USERS_START });
   axiosWithAuth()
     .get('/users')
@@ -77,20 +74,20 @@ export const getUser = () => dispatch => {
 };
 
 
-export const FETCH_BUBL_START = 'FETCH_BUBL_START';
-export const FETCH_BUBL_SUCCESS = 'FETCH_BUBL_SUCCESS';
-export const FETCH_BUBL_FAILURE = 'FETCH_BUBL_FAILURE';
-export const getBubl = () => dispatch => {
-  dispatch({ type: FETCH_BUBL_START });
+export const FETCH_BUBLS_START = 'FETCH_BUBLS_START';
+export const FETCH_BUBLS_SUCCESS = 'FETCH_BUBLS_SUCCESS';
+export const FETCH_BUBLS_FAILURE = 'FETCH_BUBLS_FAILURE';
+export const getBubls = () => dispatch => {
+  dispatch({ type: FETCH_BUBLS_START });
   axiosWithAuth()
-    .get('/bubl')
+    .get('/bubls')
     .then(res => {
-      dispatch({ type: FETCH_BUBL_SUCCESS, payload: res.data });
-      console.log("FETCH_BUBL res.data:", res.data);
+      dispatch({ type: FETCH_BUBLS_SUCCESS, payload: res.data });
+      console.log("FETCH_BUBLS res.data:", res.data);
     })
     .catch(err => {
-      dispatch({ type: FETCH_BUBL_FAILURE, payload: err.response });
-      console.log("FETCH_BUBL err.respone:", err.response);
+      dispatch({ type: FETCH_BUBLS_FAILURE, payload: err.response });
+      console.log("FETCH_BUBLS err.respone:", err.response);
     })
 }
 

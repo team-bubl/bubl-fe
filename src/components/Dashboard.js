@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 // import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 
-// import Bubl from './Bubl';
+import Bubls from './Bubls';
 // import Posts from './Posts';
 // import Comments from './Comments';
 
-import { getUser } from '../actions';
+import { getUsers } from '../actions';
 
 class Dashboard extends React.Component {
 
@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
+    this.props.getUsers();
   }
 
   logout = () => {
@@ -46,8 +46,8 @@ class Dashboard extends React.Component {
           </div>
         )} */}
 
-        {/* Bubl Component, uncoment import above as well */}
-        {/* <Bubl /> */}
+        {/* Bubls Component, uncoment import above as well */}
+        <Bubls />
 
         {/* Posts component, uncomment import above as well */}
         {/* <Posts /> */}
@@ -59,7 +59,8 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ error, school, fetchingUser }) => ({
+const mapStateToProps = ({ username, error, school, fetchingUser }) => ({
+  username,
   error,
   school,
   fetchingUser
@@ -68,6 +69,6 @@ const mapStateToProps = ({ error, school, fetchingUser }) => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getUser }
+    { getUsers }
   )(Dashboard)
 );

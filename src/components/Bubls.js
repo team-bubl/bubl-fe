@@ -4,29 +4,29 @@ import { connect } from 'react-redux';
 // import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 
-import { getBubl } from '../actions';
+import { getBubls } from '../actions';
 
-class Bubl extends React.Component {
+class Bubls extends React.Component {
   componentDidMount() {
-    this.props.getBubl();
+    this.props.getBubls();
   }
 
   render() {
     return (
-      <p>Bubl Component</p>
+      <p>Bubls Component</p>
     )
   }
 }
 
-const mapStateToProps = ({ error, bubl, fetchingBubl }) => ({
+const mapStateToProps = ({ error, bubls, fetchingBubls }) => ({
   error,
-  bubl,
-  fetchingBubl
+  bubls,
+  fetchingBubls
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getBubl }
-  )(Bubl)
+    { getBubls }
+  )(Bubls)
 );
