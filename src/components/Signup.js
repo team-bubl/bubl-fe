@@ -2,17 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
-import { signup } from '../actions';
+import { signup, getSchools } from '../actions';
 
 class Signup extends React.Component {
 
   state = {
     newUser: {
       username: '',
-      password: ''
+      password: '',
+      audit_id: ''
     },
-    school_id: ''
+    schoolData: []
   };
+
+  componentDidMount() {
+    this.props.getSchools();
+  }
 
   handleChange = e => {
     this.setState({
@@ -36,14 +41,13 @@ class Signup extends React.Component {
 
 
   render() {
-    // TODO add school selector list
     return (
       <div className="delete-this-div">
         <form onSubmit={this.signup}>
-          <select value={this.state.school_id} onChange={this.handleChange}>
-            <option value="ADC">Alice D Contreras HS</option>
-            <option value="MLK">Martin Luther King HS</option>
-            <option value="HHS">Haltom High School</option>
+          <select name="audit_id" value={this.state.audit_id} onChange={this.handleChange}>
+            {this.props.schoolData.map(hs => {
+              return <option key={hs.audit_id} value={hs.audit_id}>{hs.school}</option>
+            })}
           </select>
           <input
             type="text"
@@ -72,10 +76,12 @@ class Signup extends React.Component {
 
 const mapStateToProps = state => ({
   error: state.error,
-  signingUp: state.signingUp
+  signingUp: state.signingUp,
+  fetchingSchool: state.fetchingSchool,
+  schoolData: state.schoolData
 });
 
 export default connect(
   mapStateToProps,
-  { signup }
+  { signup, getSchools }
 )(Signup);

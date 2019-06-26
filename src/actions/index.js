@@ -8,10 +8,9 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axiosWithAuth()
-    //  TODO edit endpoints
     .post("/auth/login", creds)
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('token', res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.user })
       // In Login.js this function that calls this action creator
       // needs the following to return true so that it can history.push to a protected route
@@ -19,6 +18,27 @@ export const login = creds => dispatch => {
     })
     .catch(err => console.log(err.response));
 }
+
+// TODO Get Schools
+export const FETCH_SCHOOLS_START = 'FETCH_SCHOOLS_START';
+export const FETCH_SCHOOLS_SUCCESS = 'FETCH_SCHOOLS_SUCCESS';
+export const FETCH_SCHOOLS_FAILURE = 'FETCH_SCHOOLS_FAILURE';
+export const getSchools = () => dispatch => {
+  dispatch({ type: FETCH_SCHOOLS_START });
+  axiosWithAuth()
+    //  TODO edit endpoints
+    .get('/school')
+    .then(res => {
+      // * res.data Brings back an array of objects with `audit_id` and `school` as properties
+      dispatch({ type: FETCH_SCHOOLS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_SCHOOLS_FAILURE, payload: err.response.data.error });
+    });
+};
+
+
+
 
 // TODO scrutinize this SIGNUP acton sequence
 export const SIGNUP_START = "SIGNUP_START";
@@ -30,7 +50,7 @@ export const signup = user => dispatch => {
     //  TODO edit endpoints
     .post("/auth/register", user)
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('token', res.data.token);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user })
       // In Signup.js this function that calls this action creator
       // needs the following to return true so that it can history.push to a protected route

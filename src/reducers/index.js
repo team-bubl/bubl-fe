@@ -3,19 +3,22 @@ import {
   LOGIN_SUCCESS,
   // TODO write out failures
   // LOGIN_FAILURE,
-  FETCH_DATA_START,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE,
+  FETCH_SCHOOLS_START,
+  FETCH_SCHOOLS_SUCCESS,
+  FETCH_SCHOOLS_FAILURE,
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE
 } from '../actions';
 
+
+// TODO remember to add reducer 'states' here
 const initialState = {
   error: '',
-  fetchingData: false,
+  fetchingSchool: false,
   loggingIn: false,
-  someData: []
+  signingUp: false,
+  schoolData: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -32,24 +35,24 @@ const reducer = (state = initialState, action) => {
         loggingIn: false,
         error: ''
       };
-    case FETCH_DATA_START:
+    case FETCH_SCHOOLS_START:
       return {
         ...state,
         error: '',
-        fetchingData: true
+        fetchingSchool: true
       };
-    case FETCH_DATA_SUCCESS:
+    case FETCH_SCHOOLS_SUCCESS:
       return {
         ...state,
-        fetchingData: false,
-        someData: action.payload
+        fetchingSchool: false,
+        schoolData: action.payload
         // .filter(add any filters here)
       };
-    case FETCH_DATA_FAILURE:
+    case FETCH_SCHOOLS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        fetchingData: false
+        fetchingSchool: false
       };
     case SIGNUP_START:
       return {
