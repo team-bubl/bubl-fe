@@ -59,18 +59,72 @@ export const signup = user => dispatch => {
     .catch(err => console.log(err.response));
 }
 
-export const FETCH_DATA_START = 'FETCH_DATA_START';
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
-export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
-export const getData = () => dispatch => {
-  dispatch({ type: FETCH_DATA_START });
+export const FETCH_USERS_START = 'FETCH_USERS_START';
+export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
+export const getUser = () => dispatch => {
+  dispatch({ type: FETCH_USERS_START });
   axiosWithAuth()
-    //  TODO edit endpoints
-    .get('/data')
+    .get('/users')
     .then(res => {
-      dispatch({ tpye: FETCH_DATA_SUCCESS, payload: res.data.data });
+      dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
+      console.log("FETCH_USERS res.data:", res.data);
     })
     .catch(err => {
-      dispatch({ type: FETCH_DATA_FAILURE, payload: err.response.data.error });
+      dispatch({ type: FETCH_USERS_FAILURE, payload: err.response });
+      console.log("FETCH_USERS err.respone:", err.response);
     });
 };
+
+
+export const FETCH_BUBL_START = 'FETCH_BUBL_START';
+export const FETCH_BUBL_SUCCESS = 'FETCH_BUBL_SUCCESS';
+export const FETCH_BUBL_FAILURE = 'FETCH_BUBL_FAILURE';
+export const getBubl = () => dispatch => {
+  dispatch({ type: FETCH_BUBL_START });
+  axiosWithAuth()
+    .get('/bubl')
+    .then(res => {
+      dispatch({ type: FETCH_BUBL_SUCCESS, payload: res.data });
+      console.log("FETCH_BUBL res.data:", res.data);
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_BUBL_FAILURE, payload: err.response });
+      console.log("FETCH_BUBL err.respone:", err.response);
+    })
+}
+
+
+export const FETCH_POSTS_START = 'FETCH_POSTS_START';
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+export const getPosts = () => dispatch => {
+  dispatch({ type: FETCH_POSTS_START });
+  axiosWithAuth()
+    .get('/posts')
+    .then(res => {
+      dispatch({ type: FETCH_POSTS_SUCCESS, payload: res.data });
+      console.log("FETCH_POSTS res.data:", res.data);
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_POSTS_FAILURE, payload: err.response });
+      console.log("FETCH_POSTS err.respone:", err.response);
+    })
+}
+
+export const FETCH_COMMENTS_START = 'FETCH_COMMENTS_START';
+export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
+export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
+export const getComments = () => dispatch => {
+  dispatch({ type: FETCH_COMMENTS_START });
+  axiosWithAuth()
+    .get('/comments')
+    .then(res => {
+      dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
+      console.log("FETCH_COMMENTS res.data:", res.data);
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err.response });
+      console.log("FETCH_COMMENTS err.respone:", err.response);
+    })
+}

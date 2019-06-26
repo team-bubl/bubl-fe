@@ -4,16 +4,22 @@ import { connect } from 'react-redux';
 // import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 
-import { getData } from '../actions';
+// import Bubl from './Bubl';
+// import Posts from './Posts';
+// import Comments from './Comments';
+
+import { getUser } from '../actions';
 
 class Dashboard extends React.Component {
 
   state = {
-
+    user: {
+      username: ''
+    }
   }
 
   componentDidMount() {
-    this.props.getData();
+    this.props.getUser();
   }
 
   logout = () => {
@@ -39,20 +45,29 @@ class Dashboard extends React.Component {
             <p>Fetched Data</p>
           </div>
         )} */}
+
+        {/* Bubl Component, uncoment import above as well */}
+        {/* <Bubl /> */}
+
+        {/* Posts component, uncomment import above as well */}
+        {/* <Posts /> */}
+
+        {/* Comments component, uncomment import above as well */}
+        {/* <Comments /> */}
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ error, someData, fetchingData }) => ({
+const mapStateToProps = ({ error, school, fetchingUser }) => ({
   error,
-  someData,
-  fetchingData
+  school,
+  fetchingUser
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getData }
+    { getUser }
   )(Dashboard)
 );

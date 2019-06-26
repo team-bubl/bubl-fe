@@ -8,7 +8,19 @@ import {
   FETCH_SCHOOLS_FAILURE,
   SIGNUP_START,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE
+  SIGNUP_FAILURE,
+  FETCH_USERS_START,
+  FETCH_USERS_SUCCESS,
+  FETCH_USERS_FAILURE,
+  FETCH_BUBL_START,
+  FETCH_BUBL_SUCCESS,
+  FETCH_BUBL_FAILURE,
+  FETCH_POSTS_START,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+  FETCH_COMMENTS_START,
+  FETCH_COMMENTS_SUCCESS,
+  FETCH_COMMENTS_FAILURE
 } from '../actions';
 
 
@@ -70,6 +82,82 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         signingUp: false,
+        error: action.payload
+      }
+    case FETCH_USERS_START:
+      return {
+        ...state,
+        fetchingUser: true,
+        error: ''
+      }
+    case FETCH_USERS_SUCCESS:
+      return {
+        ...state,
+        fetchingUser: false,
+        user: action.payload,
+        error: ''
+      }
+    case FETCH_USERS_FAILURE:
+      return {
+        ...state,
+        fetchingUser: false,
+        error: action.payload
+      }
+    case FETCH_BUBL_START:
+      return {
+        ...state,
+        fetchingBubl: true,
+        error: ''
+      }
+    case FETCH_BUBL_SUCCESS:
+      return {
+        ...state,
+        fetchingBubl: false,
+        bublData: action.payload,
+        error: ''
+      }
+    case FETCH_BUBL_FAILURE:
+      return {
+        ...state,
+        fetchingBubl: false,
+        error: action.payload
+      }
+    case FETCH_POSTS_START:
+      return {
+        ...state,
+        fetchingPosts: true,
+        error: ''
+      }
+    case FETCH_POSTS_SUCCESS:
+      return {
+        ...state,
+        fetchingPosts: false,
+        postsData: action.payload,
+        error: ''
+      }
+    case FETCH_POSTS_FAILURE:
+      return {
+        ...state,
+        fetchingPosts: false,
+        error: action.payload
+      }
+    case FETCH_COMMENTS_START:
+      return {
+        ...state,
+        fetchingComments: true,
+        error: ''
+      }
+    case FETCH_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        fetchingComments: false,
+        comments: action.payload,
+        error: ''
+      }
+    case FETCH_COMMENTS_FAILURE:
+      return {
+        ...state,
+        fetchingComments: false,
         error: action.payload
       }
     default:
