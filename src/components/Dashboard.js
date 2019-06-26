@@ -8,14 +8,24 @@ import { getData } from '../actions';
 
 class Dashboard extends React.Component {
 
+  state = {
+
+  }
+
   componentDidMount() {
     this.props.getData();
+  }
+
+  logout = () => {
+    localStorage.removeItem('token');
+    this.setState({});
   }
 
   render() {
     return (
       <div className="delete-this-div">
         <p>Dashboard</p>
+        <button onClick={this.logout}>Log Out</button>
         {/* Uncomment below to fetch data */}
         {/* {this.props.fetchingData && (
           <div className="key spinner">
