@@ -1,37 +1,37 @@
-# bubl-frontend
+# bubl-api
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-> A React front end for Bubl -- A Lambda School Build Week project
-
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
+- [Mission](#mission)
+- [Technologies](#technologies)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
 
-## Install
+## Mission
 
-```
-```
+Our mission is to increase a sense of belonging and reduce social anxiety amongst new High School students. 
 
-## Usage
+Bubl does this by providing Middle School students who are transitioning to High School a space to have topical discussions and develop relationships with other students who have similar interests.
 
-```
-```
+## Technologies
+
+This backend API was built using the following tools/libraries:
+
+- React
+- Redux
+- Axios
 
 ## Maintainers
 
-[@thisbenrogers](https://github.com/thisbenrogers)
+[@thisbenrogers](https://github.com/thisbenrogers)  
 
 ## Contribute
 
-
-
-Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+This is a @LambdaSchool student project, and as such Pull Requests and other contributions are not accepted. 
 
 ## License
 
-MIT © 2019 Ben Rogers
+MIT © 2019 Team Bubl
