@@ -34,7 +34,9 @@ const initialState = {
   loggingIn: false,
   signingUp: false,
   bubls: [],
-  schoolData: []
+  topic: '',
+  schoolData: [],
+  addingBubl: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -177,7 +179,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         addingBubl: false,
         error: '',
-        bubl: action.payload
+        topic: action.payload
       }
     case ADD_BUBL_FAILURE:
       return {

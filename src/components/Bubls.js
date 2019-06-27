@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import Loader from 'react-loader-spinner';
 import { withRouter } from 'react-router-dom';
 
-// import AddBubl from './AddBubl';
+import AddBubl from './AddBubl';
 
 import { getBubls } from '../actions';
 
@@ -24,10 +24,10 @@ class Bubls extends React.Component {
         <p>{console.log("Inside Bubls Return:", this.props)}</p>
         {this.props.bubls.map(bubl => {
           return (
-            <p key={bubl.school_id}>{bubl.topic}</p>
+            <p key={bubl.audit_id}>{bubl.topic}</p>
           )
         })}
-        {/* <AddBubl /> */}
+        <AddBubl />
       </div>
     )
   }

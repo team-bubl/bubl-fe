@@ -128,11 +128,12 @@ export const getComments = () => dispatch => {
 export const ADD_BUBL_START = 'ADD_BUBL_START';
 export const ADD_BUBL_SUCCESS = 'ADD_BUBL_SUCCESS';
 export const ADD_BUBL_FAILURE = 'ADD_BUBL_FAILURE';
-export const addBubl = bubl => dispatch => {
+export const addBubl = newBubl => dispatch => {
   dispatch({ type: ADD_BUBL_START });
   axiosWithAuth()
-    .post('/bubls', bubl)
+    .post('/bubls/', newBubl)
     .then(res => {
+      console.log("ADD_BUBL action res.data:", res.data);
       dispatch({ type: ADD_BUBL_SUCCESS, payload: res.data });
     })
     .catch(err => {
