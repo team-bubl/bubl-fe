@@ -12,9 +12,8 @@ class AddBubl extends React.Component {
     topic: ''
   }
 
-  // componentDidMount() {
-  //   console.log("CDM");
-  // }
+  componentDidMount() {
+  }
 
   handleChange = e => {
     this.setState({

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import AddBubl from './AddBubl';
 
-import { getBubls } from '../actions';
+import { getBubls, deleteBubl } from '../actions';
 
 class Bubls extends React.Component {
   state = {
@@ -17,6 +17,12 @@ class Bubls extends React.Component {
     this.props.getBubls();
   }
 
+  yeetBubl = (e, id) => {
+    e.preventDefault();
+    this.props.deleteBubl(id);
+    this.setState({});
+  }
+
   render() {
     return (
       <div className="delete-this-wrapper">
@@ -24,7 +30,10 @@ class Bubls extends React.Component {
         <p>{console.log("Inside Bubls Return:", this.props)}</p>
         {this.props.bubls.map(bubl => {
           return (
-            <p key={bubl.audit_id}>{bubl.topic}</p>
+            <div key={bubl.audit_id}>
+              <p>{bubl.topic}</p>
+              <button onClick={e => this.yeetBubl(e, bubl.audit_id)}>X</button>
+            </div>
           )
         })}
         <AddBubl />
@@ -42,6 +51,6 @@ const mapStoreStateToProps = ({ error, bubls, fetchingBubls }) => ({
 export default withRouter(
   connect(
     mapStoreStateToProps,
-    { getBubls }
+    { getBubls, deleteBubl }
   )(Bubls)
 );

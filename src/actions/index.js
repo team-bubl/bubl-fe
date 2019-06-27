@@ -130,7 +130,7 @@ export const ADD_BUBL_SUCCESS = 'ADD_BUBL_SUCCESS';
 export const ADD_BUBL_FAILURE = 'ADD_BUBL_FAILURE';
 export const addBubl = newBubl => dispatch => {
   dispatch({ type: ADD_BUBL_START });
-  axiosWithAuth()
+  return axiosWithAuth()
     .post('/bubls/', newBubl)
     .then(res => {
       console.log("ADD_BUBL action res.data:", res.data);
@@ -138,5 +138,20 @@ export const addBubl = newBubl => dispatch => {
     })
     .catch(err => {
       dispatch({ type: ADD_BUBL_FAILURE, payload: err.response });
+    })
+}
+
+export const DELETE_BUBL_START = 'DELETE_BUBL_START';
+export const DELETE_BUBL_SUCCESS = 'DELETE_BUBL_SUCCESS';
+export const DELETE_BUBL_FAILURE = 'DELETE_BUBL_FAILURE';
+export const deleteBubl = id => dispatch => {
+  dispatch({ type: DELETE_BUBL_START });
+  axiosWithAuth()
+    .delete(`/bubls/${id}`)
+    .then(res => {
+      dispatch({ type: DELETE_BUBL_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_BUBL_FAILURE, payload: err.response });
     })
 }

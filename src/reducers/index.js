@@ -23,7 +23,10 @@ import {
   FETCH_COMMENTS_FAILURE,
   ADD_BUBL_START,
   ADD_BUBL_SUCCESS,
-  ADD_BUBL_FAILURE
+  ADD_BUBL_FAILURE,
+  DELETE_BUBL_START,
+  DELETE_BUBL_SUCCESS,
+  DELETE_BUBL_FAILURE
 } from '../actions';
 
 
@@ -36,7 +39,9 @@ const initialState = {
   bubls: [],
   topic: '',
   schoolData: [],
-  addingBubl: false
+  addingBubl: false,
+  deletingBubl: false,
+  bublId: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -186,6 +191,25 @@ const reducer = (state = initialState, action) => {
         ...state,
         addingBubl: false,
         error: action.payload
+      }
+    case DELETE_BUBL_START:
+      return {
+        ...state,
+        deletingBubl: true,
+        error: ''
+      }
+    case DELETE_BUBL_SUCCESS:
+      return {
+        ...state,
+        deletingBubl: false,
+        bublId: '',
+        error: ''
+      }
+    case DELETE_BUBL_FAILURE:
+      return {
+        ...state,
+        deletingBubl: false,
+        error: ''
       }
     default:
       return state;
