@@ -11,8 +11,7 @@ export const login = creds => dispatch => {
     .post("/auth/login", creds)
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', creds.username);
-      dispatch({ type: LOGIN_SUCCESS, payload: creds.username })
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data })
       // In Login.js this function that calls this action creator
       // needs the following to return true so that it can history.push to a protected route
       return true;
@@ -79,8 +78,8 @@ export const FETCH_BUBLS_SUCCESS = 'FETCH_BUBLS_SUCCESS';
 export const FETCH_BUBLS_FAILURE = 'FETCH_BUBLS_FAILURE';
 export const getBubls = () => dispatch => {
   dispatch({ type: FETCH_BUBLS_START });
-  axiosWithAuth()
-    .get('/bubls')
+  return axiosWithAuth()
+    .get('/bubls/')
     .then(res => {
       dispatch({ type: FETCH_BUBLS_SUCCESS, payload: res.data });
       console.log("FETCH_BUBLS res.data:", res.data);
@@ -123,5 +122,20 @@ export const getComments = () => dispatch => {
     .catch(err => {
       dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err.response });
       console.log("FETCH_COMMENTS err.respone:", err.response);
+    })
+}
+
+export const ADD_BUBL_START = 'ADD_BUBL_START';
+export const ADD_BUBL_SUCCESS = 'ADD_BUBL_SUCCESS';
+export const ADD_BUBL_FAILURE = 'ADD_BUBL_FAILURE';
+export const addBubl = bubl => dispatch => {
+  dispatch({ type: ADD_BUBL_START });
+  axiosWithAuth()
+    .post('/bubls', bubl)
+    .then(res => {
+      dispatch({ type: ADD_BUBL_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_BUBL_FAILURE, payload: err.response });
     })
 }

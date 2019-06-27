@@ -20,7 +20,10 @@ import {
   FETCH_POSTS_FAILURE,
   FETCH_COMMENTS_START,
   FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAILURE
+  FETCH_COMMENTS_FAILURE,
+  ADD_BUBL_START,
+  ADD_BUBL_SUCCESS,
+  ADD_BUBL_FAILURE
 } from '../actions';
 
 
@@ -30,6 +33,7 @@ const initialState = {
   fetchingSchool: false,
   loggingIn: false,
   signingUp: false,
+  bubls: [],
   schoolData: []
 }
 
@@ -115,7 +119,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingBubls: false,
-        bublData: action.payload,
+        bubls: action.payload,
         error: ''
       }
     case FETCH_BUBLS_FAILURE:
@@ -160,6 +164,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingComments: false,
+        error: action.payload
+      }
+    case ADD_BUBL_START:
+      return {
+        ...state,
+        addingBubl: true,
+        error: ''
+      }
+    case ADD_BUBL_SUCCESS:
+      return {
+        ...state,
+        addingBubl: false,
+        error: '',
+        bubl: action.payload
+      }
+    case ADD_BUBL_FAILURE:
+      return {
+        ...state,
+        addingBubl: false,
         error: action.payload
       }
     default:
